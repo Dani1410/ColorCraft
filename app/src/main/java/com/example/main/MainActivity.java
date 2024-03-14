@@ -73,34 +73,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        colorPicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rgFormato.clearCheck();
-                btnProcesar.setVisibility(View.INVISIBLE);
-                btnCopear.setVisibility(View.INVISIBLE);
-                AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(MainActivity.this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-                    @Override
-                    public void onCancel(AmbilWarnaDialog dialog) {
-                    }
+        colorPicker.setOnClickListener(v -> {
+            rgFormato.clearCheck();
+            btnProcesar.setVisibility(View.INVISIBLE);
+            btnCopear.setVisibility(View.INVISIBLE);
+            AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(MainActivity.this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                @Override
+                public void onCancel(AmbilWarnaDialog dialog) {
+                }
 
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onOk(AmbilWarnaDialog dialog, int color) {
-                        defaultColor = color;
-                        colorNew = color;
-                        lblColor.setBackgroundColor(colorNew);
-                        lblColor.setVisibility(View.VISIBLE);
-                        lblFormato.setVisibility(View.VISIBLE);
-                        rgFormato.setVisibility(View.VISIBLE);
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onOk(AmbilWarnaDialog dialog, int color) {
+                    defaultColor = color;
+                    colorNew = color;
+                    lblColor.setBackgroundColor(colorNew);
+                    lblColor.setVisibility(View.VISIBLE);
+                    lblFormato.setVisibility(View.VISIBLE);
+                    rgFormato.setVisibility(View.VISIBLE);
 
-                    }
+                }
 
 
-                });
+            });
 
-                ambilWarnaDialog.show();
-            }
+            ambilWarnaDialog.show();
         });
 
         rgFormato.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -113,58 +110,46 @@ public class MainActivity extends AppCompatActivity {
                 btnCopear.setVisibility(View.INVISIBLE);
                 if (checkedId == R.id.rbHex) {
                     btnProcesar.setVisibility(View.VISIBLE);
-                    btnProcesar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String hexColor  = formatos.getHexColor();
-                            txtRes.setText("Formato creado - Hexadecimal");
-                            lblFor.setText(hexColor);
-                            txtRes.setVisibility(View.VISIBLE);
-                            lblFor.setVisibility(View.VISIBLE);
-                            btnCopear.setVisibility(View.VISIBLE);
-                        }
+                    btnProcesar.setOnClickListener(v -> {
+                        String hexColor  = formatos.getHexColor();
+                        txtRes.setText("Formato creado - Hexadecimal");
+                        lblFor.setText(hexColor);
+                        txtRes.setVisibility(View.VISIBLE);
+                        lblFor.setVisibility(View.VISIBLE);
+                        btnCopear.setVisibility(View.VISIBLE);
                     });
                 } else if (checkedId == R.id.rbARGB) {
                     btnProcesar.setVisibility(View.VISIBLE);
-                    btnProcesar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String argbColor = formatos.getArgbColor();
-                            txtRes.setText("Formato creado - ARGB");
-                            lblFor.setText(argbColor);
-                            txtRes.setVisibility(View.VISIBLE);
-                            lblFor.setVisibility(View.VISIBLE);
-                            btnCopear.setVisibility(View.VISIBLE);
-                        }
+                    btnProcesar.setOnClickListener(v -> {
+                        String argbColor = formatos.getArgbColor();
+                        txtRes.setText("Formato creado - ARGB");
+                        lblFor.setText(argbColor);
+                        txtRes.setVisibility(View.VISIBLE);
+                        lblFor.setVisibility(View.VISIBLE);
+                        btnCopear.setVisibility(View.VISIBLE);
                     });
                 } else if (checkedId == R.id.rbRGB) {
                     btnProcesar.setVisibility(View.VISIBLE);
-                    btnProcesar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String rgbColor = formatos.getRgbColor();
-                            txtRes.setText("Formato creado - RGB");
-                            lblFor.setText(rgbColor);
-                            txtRes.setVisibility(View.VISIBLE);
-                            lblFor.setVisibility(View.VISIBLE);
-                            btnCopear.setVisibility(View.VISIBLE);
-                        }
+                    btnProcesar.setOnClickListener(v -> {
+                        String rgbColor = formatos.getRgbColor();
+                        txtRes.setText("Formato creado - RGB");
+                        lblFor.setText(rgbColor);
+                        txtRes.setVisibility(View.VISIBLE);
+                        lblFor.setVisibility(View.VISIBLE);
+                        btnCopear.setVisibility(View.VISIBLE);
                     });
                 }
             }
         });
 
-        btnCopear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String texto = lblFor.getText().toString();
+        btnCopear.setOnClickListener(v -> {
+            String texto = lblFor.getText().toString();
 
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText("Texto copiado", texto);
-                clipboardManager.setPrimaryClip(clipData);
-                Toast.makeText(MainActivity.this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+            ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("Texto copiado", texto);
+            clipboardManager.setPrimaryClip(clipData);
+            Toast.makeText(MainActivity.this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
 
-            }
         });
 
     }
