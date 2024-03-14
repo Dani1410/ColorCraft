@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ColorCraft</string>
+    <string name="titleMain">Selecciona un color</string>
+    <string name="txtBoton">Abrir Paleta</string>
+    <string name="lblResultado" />
+    <string name="hex">Hexadecimal</string>
+    <string name="rgb">RGB</string>
+    <string name="argb">ARGB</string>
+    <string name="titleBottom">Selecciona un formato</string>
+    <string name="txtBotonProcesar">Convertir</string>
+    <string name="btnCopear">Copear</string>
+    <string name="lblFor" />
+</resources>
